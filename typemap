@@ -1,0 +1,143 @@
+TYPEMAP
+
+Gtk::Application T_PTROBJ_GOBJECT_GTK_APPLICATION
+
+GtkApplication * T_PTROBJ_GOBJECT_GTK_APPLICATION
+
+
+Gio::Application T_PTROBJ_GOBJECT_G_APPLICATION
+
+GApplication * T_PTROBJ_GOBJECT_G_APPLICATION
+
+
+Gtk::Window T_PTROBJ_GOBJECT_GTK_WINDOW
+
+GtkWindow * T_PTROBJ_GOBJECT_GTK_WINDOW
+
+
+Gtk::ApplicationWindow T_PTROBJ_GOBJECT_GTK_APPLICATION_WINDOW
+
+GtkApplicationWindow * T_PTROBJ_GOBJECT_GTK_APPLICATION_WINDOW
+
+
+G::Object T_PTROBJ_GOBJECT_G_OBJECT
+
+GObject * T_PTROBJ_GOBJECT_G_OBJECT
+
+INPUT
+
+T_PTROBJ_GOBJECT_GTK_APPLICATION
+    if (sv_isobject($arg)) {
+        IV integer_pointer = SvIV(SvRV($arg));
+        void *void_object = INT2PTR(void *, integer_pointer);
+        if (G_IS_OBJECT(void_object)) {
+            GObject *gobject = G_OBJECT (void_object);
+            if (G_TYPE_CHECK_INSTANCE_TYPE(gobject, gtk_application_get_type())) {
+                $var = GTK_APPLICATION (gobject);
+            } else {
+                croak("Not implementing GTK_APPLICATION");
+            }
+        } else {
+            croak("Expected gobject");
+        }
+    } else {
+        croak("Expected Gtk::Application object");
+    }
+
+
+T_PTROBJ_GOBJECT_G_APPLICATION
+    if (sv_isobject($arg)) {
+        IV integer_pointer = SvIV(SvRV($arg));
+        void *void_object = INT2PTR(void *, integer_pointer);
+        if (G_IS_OBJECT(void_object)) {
+            GObject *gobject = G_OBJECT (void_object);
+            if (G_TYPE_CHECK_INSTANCE_TYPE(gobject, g_application_get_type())) {
+                $var = G_APPLICATION (gobject);
+            } else {
+                croak("Not implementing G_APPLICATION");
+            }
+        } else {
+            croak("Expected gobject");
+        }
+    } else {
+        croak("Expected Gio::Application object");
+    }
+
+
+T_PTROBJ_GOBJECT_GTK_WINDOW
+    if (sv_isobject($arg)) {
+        IV integer_pointer = SvIV(SvRV($arg));
+        void *void_object = INT2PTR(void *, integer_pointer);
+        if (G_IS_OBJECT(void_object)) {
+            GObject *gobject = G_OBJECT (void_object);
+            if (G_TYPE_CHECK_INSTANCE_TYPE(gobject, gtk_window_get_type())) {
+                $var = GTK_WINDOW (gobject);
+            } else {
+                croak("Not implementing GTK_WINDOW");
+            }
+        } else {
+            croak("Expected gobject");
+        }
+    } else {
+        croak("Expected Gtk::Window object");
+    }
+
+
+T_PTROBJ_GOBJECT_GTK_APPLICATION_WINDOW
+    if (sv_isobject($arg)) {
+        IV integer_pointer = SvIV(SvRV($arg));
+        void *void_object = INT2PTR(void *, integer_pointer);
+        if (G_IS_OBJECT(void_object)) {
+            GObject *gobject = G_OBJECT (void_object);
+            if (G_TYPE_CHECK_INSTANCE_TYPE(gobject, gtk_application_window_get_type())) {
+                $var = GTK_APPLICATION_WINDOW (gobject);
+            } else {
+                croak("Not implementing GTK_APPLICATION_WINDOW");
+            }
+        } else {
+            croak("Expected gobject");
+        }
+    } else {
+        croak("Expected Gtk::ApplicationWindow object");
+    }
+
+
+T_PTROBJ_GOBJECT_G_OBJECT
+    if (sv_isobject($arg)) {
+        IV integer_pointer = SvIV(SvRV($arg));
+        void *void_object = INT2PTR(void *, integer_pointer);
+        if (G_IS_OBJECT(void_object)) {
+            GObject *gobject = G_OBJECT (void_object);
+            if (G_TYPE_CHECK_INSTANCE_TYPE(gobject, g_object_get_type())) {
+                $var = G_OBJECT (gobject);
+            } else {
+                croak("Not implementing G_OBJECT");
+            }
+        } else {
+            croak("Expected gobject");
+        }
+    } else {
+        croak("Expected G::Object object");
+    }
+
+OUTPUT
+
+T_PTROBJ_GOBJECT_GTK_APPLICATION
+    sv_setref_pv($arg, "Gtk::Application", (void *)$var);
+
+
+T_PTROBJ_GOBJECT_G_APPLICATION
+    sv_setref_pv($arg, "Gio::Application", (void *)$var);
+
+
+T_PTROBJ_GOBJECT_GTK_WINDOW
+    sv_setref_pv($arg, "Gtk::Window", (void *)$var);
+
+
+T_PTROBJ_GOBJECT_GTK_APPLICATION_WINDOW
+    sv_setref_pv($arg, "Gtk::ApplicationWindow", (void *)$var);
+
+
+T_PTROBJ_GOBJECT_G_OBJECT
+    sv_setref_pv($arg, "G::Object", (void *)$var);
+

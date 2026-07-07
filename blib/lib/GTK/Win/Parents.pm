@@ -1,0 +1,16 @@
+package Gio::Application;
+use v5.38.0;
+use vars qw/@ISA/;
+our @ISA = qw/G::Object/;
+package Gtk::ApplicationWindow;
+use v5.38.0;
+use vars qw/@ISA/;
+our @ISA = qw/Gtk::Window/;
+package Gtk::Application;
+use v5.38.0;
+use vars qw/@ISA/;
+our @ISA = qw/Gio::Application/;
+package Gtk::Window;
+use v5.38.0;
+use vars qw/@ISA/;
+our @ISA = qw/G::Object/;
