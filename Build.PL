@@ -47,7 +47,7 @@ my $build = Module::Build->new(
         'ExtUtils::CBuilder' => 0,
     },
     xs_files           => { './GTKWin.xs' => './GTKWin.xs', },
-    extra_compiler_flags => scalar `pkg-config --cflags gtk4`,
+    extra_compiler_flags => scalar `pkg-config --cflags gtk4` . " -I$ENV{PWD}",
     extra_linker_flags => scalar `pkg-config --libs gtk4`,
 );
 
